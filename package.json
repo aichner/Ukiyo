@@ -1,0 +1,43 @@
+{
+  "name": "react-mdb-firebase-template",
+  "version": "1.0.0",
+  "private": true,
+  "license": "(EUPL-1.2)",
+  "homepage": ".",
+  "dependencies": {
+    "firebase": "^7.2.0",
+    "gh-pages": "^2.2.0",
+    "mdbreact": "^4.25.5",
+    "node-sass": "^4.13.0",
+    "react-redux": "^7.1.1",
+    "react-redux-firebase": "^2.4.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "^3.3.0",
+    "redux": "^4.0.4",
+    "redux-firestore": "^0.9.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aichner/React-MDB-Firebase-Template.git"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "renamer": "^1.0.0",
+    "rimraf": "^2.6.2"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
