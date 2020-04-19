@@ -4,11 +4,10 @@
   </a>
 </p>
 
-<h3 align="center">KOJIN - ReactJS, MDB & Firebase based template for static homepages with built in CMS.</h3>
+<h3 align="center">KOJIN - ReactJS, MDB & Firebase based template for static homepages with built-in CMS.</h3>
 
 <p align="center">
-  This repository serves as an entry point for future KOJIN ReactJS, MDB & Firebase Basic projects of the
-  Advertisement Agency Christian Aichner.
+  This repository serves as an entry point for future KOJIN projects of the Advertisement Agency Christian Aichner.
   <br>
   <br>
   <a href="https://github.com/aichner/Kojin/issues/new?template=bug_report.md">Report bug</a>
