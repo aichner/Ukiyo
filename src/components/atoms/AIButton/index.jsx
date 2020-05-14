@@ -1,17 +1,17 @@
 //> React
 // Contains all the functionality necessary to define React components
 import React from "react";
+// React Prop Types
+import PropTypes from "prop-types";
+
+//> Additional
+// Google Analytics
+import ReactGA from "react-ga";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import { MDBBtn, MDBIcon } from "mdbreact";
 
-/**
- * PARAMETERS
- * googleAnalytics: {register: Boolean!, category: String!, action: String!, label: String!, value: Int!}
- * type: "submit"
- * action
- */
 class AIButton extends React.Component {
   componentDidMount = () => {};
 
@@ -24,8 +24,8 @@ class AIButton extends React.Component {
       if (value) {
         ReactGA.event({
           category: category ? category : "Button click",
-          action: eventAction
-            ? eventAction
+          action: action
+            ? action
             : this.props.name
             ? this.props.name
             : "Unnamed action",
@@ -33,9 +33,9 @@ class AIButton extends React.Component {
         });
       } else {
         ReactGA.event({
-          category: eventCategory ? eventCategory : "Button click",
-          action: eventAction
-            ? eventAction
+          category: category ? category : "Button click",
+          action: action
+            ? action
             : this.props.name
             ? this.props.name
             : "Unnamed action",
@@ -46,8 +46,12 @@ class AIButton extends React.Component {
   };
 
   handleClick = (props) => {
-    // Register Google Analytics button click
-    this.registerGoogleAnalytics();
+    const googleAnalytics = props.googleAnalytics;
+
+    if (googleAnalytics) {
+      // Register Google Analytics button click
+      this.registerGoogleAnalytics(googleAnalytics);
+    }
 
     // Execute functionality given by props
     if (this.props.onClick) {
@@ -56,13 +60,22 @@ class AIButton extends React.Component {
   };
 
   render() {
-    const { type, value, icon, iconType, editable, className } = this.props;
+    const {
+      type,
+      value,
+      icon,
+      iconType,
+      editable,
+      className,
+      disabled,
+    } = this.props;
 
     return (
       <MDBBtn
         onClick={this.handleClick}
         type={type ? type : undefined}
         className={className}
+        disabled={disabled}
       >
         {icon && (
           <MDBIcon
@@ -77,4 +90,26 @@ class AIButton extends React.Component {
   }
 }
 
+AIButton.defaultProps = {
+  color: "primary",
+  editable: false,
+  disabled: false,
+};
+
+AIButton.propTypes = {
+  color: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  editable: PropTypes.bool,
+  icon: PropTypes.string,
+  disabled: PropTypes.bool,
+  iconType: PropTypes.string,
+  analytics: PropTypes.object,
+};
+
 export default AIButton;
+
+/**
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2020 Werbeagentur Christian Aichner
+ */

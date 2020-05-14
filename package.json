@@ -7,9 +7,11 @@
   "dependencies": {
     "firebase": "^7.2.0",
     "gh-pages": "^2.2.0",
-    "mdbreact": "mdbreact-4.26.1.tgz",
     "mdb-react-sortable": "mdb-react-sortable-4.26.0.tgz",
+    "mdbreact": "mdbreact-4.26.1.tgz",
     "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
+    "react-ga": "^2.7.0",
     "react-redux": "^7.1.1",
     "react-redux-firebase": "^2.4.1",
     "react-router-dom": "^5.0.1",
