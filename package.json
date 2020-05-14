@@ -1,13 +1,14 @@
 {
-  "name": "react-mdb-firebase-template",
-  "version": "1.0.0",
+  "name": "ukiyo",
+  "version": "0.1.0",
   "private": true,
   "license": "(EUPL-1.2)",
   "homepage": ".",
   "dependencies": {
     "firebase": "^7.2.0",
     "gh-pages": "^2.2.0",
-    "mdbreact": "^4.25.5",
+    "mdbreact": "mdbreact-4.26.1.tgz",
+    "mdb-react-sortable": "mdb-react-sortable-4.26.0.tgz",
     "node-sass": "^4.13.0",
     "react-redux": "^7.1.1",
     "react-redux-firebase": "^2.4.1",
@@ -19,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aichner/React-MDB-Firebase-Template.git"
+    "url": "https://github.com/aichner/Ukiyo.git"
   },
   "scripts": {
     "start": "react-scripts start",
