@@ -14,25 +14,6 @@ import ReactGA from "react-ga";
 import { MDBBtn, MDBIcon } from "mdbreact";
 //#endregion
 
-//#region > PropTypes
-AIButton.defaultProps = {
-  color: "primary",
-  editable: false,
-  disabled: false,
-};
-
-AIButton.propTypes = {
-  color: PropTypes.string,
-  name: PropTypes.string,
-  value: PropTypes.string,
-  editable: PropTypes.bool,
-  icon: PropTypes.string,
-  disabled: PropTypes.bool,
-  iconType: PropTypes.string,
-  analytics: PropTypes.object,
-};
-//#endregion
-
 //#region > Components
 class AIButton extends React.Component {
   componentDidMount = () => {};
@@ -111,6 +92,25 @@ class AIButton extends React.Component {
     );
   }
 }
+//#endregion
+
+//#region > PropTypes
+AIButton.defaultProps = {
+  color: "primary",
+  editable: false,
+  disabled: false,
+};
+
+AIButton.propTypes = {
+  color: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  editable: PropTypes.bool,
+  icon: PropTypes.string,
+  disabled: PropTypes.bool,
+  iconType: PropTypes.string,
+  analytics: PropTypes.object,
+};
 //#endregion
 
 //#region > Exports
