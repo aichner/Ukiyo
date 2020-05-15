@@ -1,21 +1,21 @@
 <p align="center">
   <a href="https://www.aichner-christian.com/" target="_blank" rel="noopener noreferrer">
-    <img src="https://github.com/aichner/Kojin/blob/master/src/assets/content/h150.jpg?raw=true" alt="Agency Logo" height="150" style="max-width: 100%" />
+    <img src="https://github.com/aichner/Ukiyo/blob/master/src/assets/content/h150.jpg?raw=true" alt="Agency Logo" height="150" style="max-width: 100%" />
   </a>
 </p>
 
-<h3 align="center">KOJIN - ReactJS, MDB & Firebase based template for static homepages with built-in CMS.</h3>
+<h3 align="center">UKIYO - ReactJS, MDB & Firebase based template for static homepages with built-in CMS.</h3>
 
 <p align="center">
-  This repository serves as an entry point for future KOJIN projects of the Advertisement Agency Christian Aichner.
+  This repository serves as an entry point for future UKIYO projects of the Advertisement Agency Christian Aichner.
   <br>
   <br>
-  <a href="https://github.com/aichner/Kojin/issues/new?template=bug_report.md">Report bug</a>
+  <a href="https://github.com/aichner/Ukiyo/issues/new?template=bug_report.md">Report bug</a>
   ·
-  <a href="https://github.com/aichner/Kojin/issues/new?template=feature_request.md">Request feature</a>
+  <a href="https://github.com/aichner/Ukiyo/issues/new?template=feature_request.md">Request feature</a>
   <br>
   <br>
-  <a href="https://www.codacy.com/app/aichner/Kojin">
+  <a href="https://www.codacy.com/app/aichner/Ukiyo">
     <img src="https://api.codacy.com/project/badge/Grade/579c145ee6cf4d7e8ae7c1c78a13617a" />
   </a>
   <a href="https://liberapay.com/aichner/donate">
@@ -44,8 +44,8 @@
 
 ## [](#quick-start)Quick start
 
-- Clone the repository: `git clone https://github.com/aichner/Kojin.git kojin`
-- Go to the new folder `cd kojin`
+- Clone the repository: `git clone https://github.com/aichner/Ukiyo.git ukiyo`
+- Go to the new folder `cd ukiyo`
 - (Optional) For a better experience purchase MDB React Pro and change the source of `"mdbreact"` in the `package.json`
 - Run `npm install`
 - Rename your `fbConfig.js.template` to `fbConfig.js` in your `src/config` and import your firebase configuration
@@ -56,16 +56,16 @@ The demo site will now be accessible at [http://localhost:3000/](http://localhos
 ## [](#bug-and-feature-requests)Bugs and feature requests
 
 Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not
-addressed yet, [please open a new issue](https://github.com/aichner/Kojin/issues/new/choose).
+addressed yet, [please open a new issue](https://github.com/aichner/Ukiyo/issues/new/choose).
 
 ## [](#contributing)Contributing
 
-![GitHub last commit](https://img.shields.io/github/last-commit/aichner/Kojin)
-![GitHub issues](https://img.shields.io/github/issues-raw/aichner/Kojin)
-![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/aichner/Kojin?color=green)
+![GitHub last commit](https://img.shields.io/github/last-commit/aichner/Ukiyo)
+![GitHub issues](https://img.shields.io/github/issues-raw/aichner/Ukiyo)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/aichner/Ukiyo?color=green)
 
 Please read through our
-[contributing guidelines](https://github.com/aichner/Kojin/blob/master/CONTRIBUTING.md). Included are
+[contributing guidelines](https://github.com/aichner/Ukiyo/blob/master/CONTRIBUTING.md). Included are
 directions for opening issues, coding standards, and notes on development.
 
 All HTML and CSS should conform to the [Code Guide](https://github.com/mdo/code-guide), maintained by
@@ -82,7 +82,7 @@ Get updates on our development and chat/talk with the project maintainers and co
 
 ## [](#versioning)Versioning
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/aichner/Kojin)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/aichner/Ukiyo)
 
 For transparency into our release cycle and in striving to maintain backward compatibility, this repository is
 maintained under [the Semantic Versioning guidelines](https://semver.org/). Sometimes we screw up, but we adhere to
