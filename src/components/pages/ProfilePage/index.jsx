@@ -135,9 +135,11 @@ class ProfilePage extends React.Component {
                 );
               })}
           </div>
-          <MDBBtn color="green">Publish</MDBBtn>
-          <MDBContainer className="text-center my-5 py-5 d-none">
-            <h2>Logged in</h2>
+          <MDBContainer className="text-center">
+            <MDBBtn color="green">Publish</MDBBtn>
+            <Link to="/">
+              <MDBBtn color="primary">View live</MDBBtn>
+            </Link>
             <MDBBtn color="elegant" onClick={() => this.props.signOut()}>
               Logout
             </MDBBtn>

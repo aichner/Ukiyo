@@ -28,6 +28,7 @@ import {
   MDBCardTitle,
   MDBCardImage,
   MDBCardText,
+  MDBBtn,
 } from "mdbreact";
 
 //> Images
@@ -127,6 +128,9 @@ class HomePage extends React.Component {
                 </React.Fragment>
               );
             })}
+            <Link to="/login">
+              <MDBBtn color="elegant">Edit</MDBBtn>
+            </Link>
           </div>
         );
       } else {
