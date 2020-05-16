@@ -53,8 +53,6 @@ class ProfilePage extends React.Component {
   render() {
     const { auth, profile } = this.props;
 
-    console.log(profile, profile.sections);
-
     // Check if firebase has loaded profile data
     if (!profile.isLoaded) {
       return (
