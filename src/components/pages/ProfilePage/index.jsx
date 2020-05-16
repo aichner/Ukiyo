@@ -13,7 +13,7 @@ import firebase from "firebase";
 import { connect } from "react-redux";
 // Actions
 import { signOut } from "../../../store/actions/authActions";
-import { getPage } from "../../../store/actions/pageActions";
+import { getPage, publishPage } from "../../../store/actions/pageActions";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
@@ -68,11 +68,21 @@ class ProfilePage extends React.Component {
       // Check if logged in
       if (auth.uid === undefined) return <Redirect to="/login" />;
 
+      // Get the latest version
+      const latestVersionTimestamp = Math.max(
+        ...Object.keys(profile.versions).map((version) => {
+          return version;
+        })
+      );
+      const latestVersion = profile.versions[latestVersionTimestamp];
+
+      console.log(latestVersion);
+
       return (
         <>
           <div id="content">
-            {profile.sections &&
-              profile.sections.map((section, s) => {
+            {latestVersion?.sections &&
+              latestVersion.sections.map((section, s) => {
                 return (
                   <React.Fragment key={s}>
                     <section id={section.anchor}>
@@ -125,6 +135,7 @@ class ProfilePage extends React.Component {
                 );
               })}
           </div>
+          <MDBBtn color="green">Publish</MDBBtn>
           <MDBContainer className="text-center my-5 py-5 d-none">
             <h2>Logged in</h2>
             <MDBBtn color="elegant" onClick={() => this.props.signOut()}>
@@ -149,6 +160,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     signOut: () => dispatch(signOut()),
     getPage: (uid) => dispatch(getPage(uid)),
+    publishPage: (timestamp) => dispatch(publishPage(timestamp)),
   };
 };
 

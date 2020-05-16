@@ -6,7 +6,6 @@ const initState = {
 const pageReducer = (state = initState, action) => {
   switch (action.type) {
     case "GET_SUCCESS":
-      console.log(action.data);
       return {
         ...state,
         fields: action.data,
