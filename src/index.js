@@ -55,7 +55,7 @@ const syncUserToAuth = true;
  * The name of the collection can vary from project to project. Check Firebase for information.
  * This tells Redux Firebase where the users are being stored.
  */
-const userCollection = "partners";
+const userCollection = "pages";
 // Enable firebase initializing before DOM rendering
 const onlyLoadWhenReady = true;
 // Create Redux data-store and store it in store and apply thunk middleware

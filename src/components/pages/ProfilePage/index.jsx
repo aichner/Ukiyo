@@ -13,11 +13,16 @@ import firebase from "firebase";
 import { connect } from "react-redux";
 // Actions
 import { signOut } from "../../../store/actions/authActions";
+import { getPage } from "../../../store/actions/pageActions";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
   MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
   MDBBtn,
 } from "mdbreact";
 //> Components
@@ -32,8 +37,24 @@ import {
 class ProfilePage extends React.Component {
   state = {};
 
+  componentDidMount = () => {
+    //this.props.getPage();
+  };
+
+  renderColContent = (column) => {
+    return (
+      <>
+        <h2>{column.content.head}</h2>
+        <p className="lead">{column.content.subhead}</p>
+      </>
+    );
+  };
+
   render() {
-    const { auth, profile, users } = this.props;
+    const { auth, profile } = this.props;
+
+    console.log(profile, profile.sections);
+
     // Check if firebase has loaded profile data
     if (!profile.isLoaded) {
       return (
@@ -48,24 +69,78 @@ class ProfilePage extends React.Component {
       if (auth.uid === undefined) return <Redirect to="/login" />;
 
       return (
-        <MDBContainer className="text-center my-5 py-5">
-          <h2>Logged in</h2>
-          <MDBBtn
-          color="elegant"
-          onClick={() => this.props.signOut()}
-          >
-            Logout
-          </MDBBtn>
-        </MDBContainer>
+        <>
+          <div id="content">
+            {profile.sections &&
+              profile.sections.map((section, s) => {
+                return (
+                  <React.Fragment key={s}>
+                    <section id={section.anchor}>
+                      <MDBContainer fluid={section.fluid}>
+                        {section.content &&
+                          section.content.rows.map((row, r) => {
+                            return (
+                              <MDBRow
+                                key={r}
+                                className={
+                                  row.center ? "flex-center" : undefined
+                                }
+                              >
+                                {row.columns &&
+                                  row.columns.map((column, c) => {
+                                    return (
+                                      <MDBCol
+                                        md={column.size}
+                                        key={c}
+                                        className={
+                                          column.content.align &&
+                                          `text-${column.content.align}`
+                                        }
+                                      >
+                                        {column.card?.isCard ? (
+                                          <MDBCard
+                                            className={
+                                              column.card.depth &&
+                                              column.card.depth > 0
+                                                ? `z-depth-${column.card.depth}`
+                                                : undefined
+                                            }
+                                          >
+                                            <MDBCardBody>
+                                              {this.renderColContent(column)}
+                                            </MDBCardBody>
+                                          </MDBCard>
+                                        ) : (
+                                          this.renderColContent(column)
+                                        )}
+                                      </MDBCol>
+                                    );
+                                  })}
+                              </MDBRow>
+                            );
+                          })}
+                      </MDBContainer>
+                    </section>
+                  </React.Fragment>
+                );
+              })}
+          </div>
+          <MDBContainer className="text-center my-5 py-5 d-none">
+            <h2>Logged in</h2>
+            <MDBBtn color="elegant" onClick={() => this.props.signOut()}>
+              Logout
+            </MDBBtn>
+          </MDBContainer>
+        </>
       );
     }
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     auth: state.firebase.auth,
+    page: state.page,
     profile: state.firebase.profile,
   };
 };
@@ -73,6 +148,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     signOut: () => dispatch(signOut()),
+    getPage: (uid) => dispatch(getPage(uid)),
   };
 };
 
@@ -83,5 +159,5 @@ export default connect(
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Christian Aichner
+ * Copyright © 2020 Werbeagentur Christian Aichner
  */
