@@ -22,6 +22,7 @@ export const getPage = (uid) => {
             return version;
           })
         );
+
         const latestVersion = page[0].versions[latestVersionTimestamp];
 
         dispatch({
