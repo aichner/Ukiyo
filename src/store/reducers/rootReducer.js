@@ -1,6 +1,8 @@
 //> Reducers
 // Authentication
 import authReducer from "./authReducer";
+// Page
+import pageReducer from "./pageReducer";
 
 //> Redux
 import { combineReducers } from "redux";
@@ -13,6 +15,7 @@ import { firebaseReducer } from "react-redux-firebase";
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  page: pageReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer, // Authentication
 });

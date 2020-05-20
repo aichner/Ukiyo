@@ -4,16 +4,7 @@ import React from "react";
 // DOM bindings for React Router
 import { BrowserRouter as Router } from "react-router-dom";
 
-//> Components
-/**
- * Footer: Global Footer
- * Navbar: Global navigation bar
- */
-import {
-  Footer,
-  Navbar,
-} from "./components/molecules";
-// Routes
+//> Routes
 import Routes from "./Routes";
 
 class App extends React.Component {
@@ -21,11 +12,9 @@ class App extends React.Component {
     return (
       <Router>
         <div className="flyout">
-          <Navbar />
           <main>
             <Routes />
           </main>
-          <Footer />
         </div>
       </Router>
     );
@@ -34,7 +23,7 @@ class App extends React.Component {
 
 export default App;
 
-/** 
+/**
  * SPDX-License-Identifier: (EUPL-1.2)
  * Copyright © 2020 Werbeagentur Christian Aichner
  */
