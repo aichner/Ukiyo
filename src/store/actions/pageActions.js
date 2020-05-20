@@ -12,6 +12,7 @@ export const getPage = (uid) => {
           let data = doc.data();
 
           data.uid = doc.id;
+
           return data;
         });
 
@@ -37,6 +38,7 @@ export const getPage = (uid) => {
   };
 };
 //#endregion
+
 //#region > PublishPage
 export const publishPage = (timestamp) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
