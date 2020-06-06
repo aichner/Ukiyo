@@ -1,3 +1,4 @@
+//#region > Imports
 //> React
 // Contains all the functionality necessary to define React components
 import React from "react";
@@ -30,11 +31,15 @@ import {
 
 //> Images
 import IMGlogo from "../../../assets/agency-small.png";
+//#endregion
 
+//#region > Data
 //> Configuration
 // The route of your profile page (include /)
 const profileRoute = "/profile";
+//#endregion
 
+//#region > Components
 class LoginPage extends React.Component {
   state = {
     email: "",
@@ -144,7 +149,9 @@ class LoginPage extends React.Component {
     );
   }
 }
+//#endregion
 
+//#region > Functions
 const mapStateToProps = (state) => {
   return {
     authErrorDetails: state.auth.authErrorDetails,
@@ -157,11 +164,14 @@ const mapDispatchToProps = (dispatch) => {
     signIn: (credentials) => dispatch(signIn(credentials)),
   };
 };
+//#endregion
 
+//#region > Exports
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withRouter(LoginPage));
+//#endregion
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)

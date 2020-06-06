@@ -1,3 +1,4 @@
+//#region > Imports
 //> React
 // Contains all the functionality necessary to define React components
 import React from "react";
@@ -34,7 +35,9 @@ import "./profile.scss";
 
 //> Images
 // To be added here
+//#endregion
 
+//#region > Components
 class ProfilePage extends React.Component {
   state = { edit: false, changes: undefined };
 
@@ -208,9 +211,7 @@ class ProfilePage extends React.Component {
               })}
           </div>
           <MDBContainer className="text-center">
-            {this.state.changes && (
-              <MDBBtn color="green">Save changes</MDBBtn>
-            )}
+            {this.state.changes && <MDBBtn color="green">Save changes</MDBBtn>}
             <Link to="/">
               <MDBBtn color="primary">View live</MDBBtn>
             </Link>
@@ -238,7 +239,9 @@ class ProfilePage extends React.Component {
     }
   }
 }
+//#endregion
 
+//#region > Functions
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
@@ -254,11 +257,14 @@ const mapDispatchToProps = (dispatch) => {
     publishPage: (timestamp) => dispatch(publishPage(timestamp)),
   };
 };
+//#endregion
 
+//#region > Exports
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withRouter(ProfilePage));
+//#endregion
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)

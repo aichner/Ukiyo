@@ -1,3 +1,4 @@
+//#region > Imports
 //> React
 // Contains all the functionality necessary to define React components
 import React from "react";
@@ -41,7 +42,9 @@ import Projects from "../../../assets/content/projects.jpg";
 
 //> CSS
 import "./HomePage.scss";
+//#endregion
 
+//#region > Components
 class HomePage extends React.Component {
   componentDidMount = () => {
     // Fetch the page using the page uinique id
@@ -139,7 +142,9 @@ class HomePage extends React.Component {
     }
   }
 }
+//#endregion
 
+//#region > Functions
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
@@ -153,11 +158,14 @@ const mapDispatchToProps = (dispatch) => {
     getPage: (uid) => dispatch(getPage(uid)),
   };
 };
+//#endregion
 
+//#region > Exports
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withRouter(HomePage));
+//#endregion
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)
