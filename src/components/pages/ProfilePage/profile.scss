@@ -1,0 +1,33 @@
+#content {
+  &.edit {
+    .edit-form {
+      position: relative;
+      .md-form {
+        display: inline-block;
+        margin: 0;
+        width: 100%;
+        input {
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          &.h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+          }
+        }
+      }
+      .btn{
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 0;
+      }
+    }
+  }
+}
+
+/**
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2020 Werbeagentur Christian Aichner
+ */

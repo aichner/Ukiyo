@@ -1,3 +1,4 @@
+//#region > Imports
 //> React
 // Contains all the functionality necessary to define React components
 import React from "react";
@@ -25,26 +26,95 @@ import {
   MDBCardBody,
   MDBBtn,
 } from "mdbreact";
+
 //> Components
-// To be added here
+import { AIHead } from "../../atoms";
 
 //> CSS
-// To be added here
+import "./profile.scss";
 
 //> Images
 // To be added here
+//#endregion
 
+//#region > Components
 class ProfilePage extends React.Component {
-  state = {};
+  state = { edit: false, changes: undefined };
 
   componentDidMount = () => {
     //this.props.getPage();
   };
 
-  renderColContent = (column) => {
+  handleValueChance = (pos, value, type) => {
+    console.log(pos, value);
+
+    this.setState({
+      changes: {
+        /* Append all previous changes */
+        ...this.state.changes,
+        /* Check if the current position section already exists, if not, create it */
+        sections: this.state.sections
+          ? {
+              ...this.state.sections,
+              /* Check if the current position row already exists, if not, create it */
+              rows: this.state.sections.rows
+                ? {
+                    ...this.state.sections[pos.s].rows[pos.r],
+                    /* Check if the current position column already exists, if not, create it */
+                    columns: this.state.sections[pos.s].rows[pos.r].columns
+                      ? {
+                          ...this.state.sections[pos.s].rows[pos.r].columns[
+                            pos.c
+                          ],
+                          /* Write the value in the according field */
+                          test: value,
+                        }
+                      : {
+                          [pos.c]: {
+                            /* Write the value in the according field */
+                            test: value,
+                          },
+                        },
+                  }
+                : {
+                    rows: {
+                      /* Row does not exist, create new row */
+                      [pos.r]: {
+                        columns: { [pos.c]: { test: value } },
+                      },
+                    },
+                  },
+            }
+          : {
+              /* Section does not exist, create new section */
+              [pos.s]: {
+                rows: {
+                  [pos.r]: {
+                    columns: { [pos.c]: { test: value } },
+                  },
+                },
+              },
+            },
+      },
+      /* Turn of edit */
+      edit: false,
+    });
+  };
+
+  renderColContent = (column, s, r, c) => {
     return (
       <>
-        <h2>{column.content.head}</h2>
+        <AIHead
+          edit={this.state.edit}
+          handleValueChance={this.handleValueChance}
+          pos={{
+            s,
+            r,
+            c,
+          }}
+        >
+          {column.content.head}
+        </AIHead>
         <p className="lead">{column.content.subhead}</p>
       </>
     );
@@ -52,6 +122,8 @@ class ProfilePage extends React.Component {
 
   render() {
     const { auth, profile } = this.props;
+
+    console.log(this.state);
 
     // Check if firebase has loaded profile data
     if (!profile.isLoaded) {
@@ -78,7 +150,7 @@ class ProfilePage extends React.Component {
 
       return (
         <>
-          <div id="content">
+          <div id="content" className={this.state.edit ? "edit" : undefined}>
             {latestVersion?.sections &&
               latestVersion.sections.map((section, s) => {
                 return (
@@ -115,11 +187,16 @@ class ProfilePage extends React.Component {
                                             }
                                           >
                                             <MDBCardBody>
-                                              {this.renderColContent(column)}
+                                              {this.renderColContent(
+                                                column,
+                                                s,
+                                                r,
+                                                c
+                                              )}
                                             </MDBCardBody>
                                           </MDBCard>
                                         ) : (
-                                          this.renderColContent(column)
+                                          this.renderColContent(column, s, r, c)
                                         )}
                                       </MDBCol>
                                     );
@@ -134,20 +211,37 @@ class ProfilePage extends React.Component {
               })}
           </div>
           <MDBContainer className="text-center">
-            <MDBBtn color="green">Publish</MDBBtn>
+            {this.state.changes && <MDBBtn color="green">Save changes</MDBBtn>}
             <Link to="/">
               <MDBBtn color="primary">View live</MDBBtn>
             </Link>
             <MDBBtn color="elegant" onClick={() => this.props.signOut()}>
               Logout
             </MDBBtn>
+            {this.state.edit ? (
+              <MDBBtn
+                color="elegant"
+                onClick={() => this.setState({ edit: false })}
+              >
+                View
+              </MDBBtn>
+            ) : (
+              <MDBBtn
+                color="elegant"
+                onClick={() => this.setState({ edit: true })}
+              >
+                Edit
+              </MDBBtn>
+            )}
           </MDBContainer>
         </>
       );
     }
   }
 }
+//#endregion
 
+//#region > Functions
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
@@ -163,11 +257,14 @@ const mapDispatchToProps = (dispatch) => {
     publishPage: (timestamp) => dispatch(publishPage(timestamp)),
   };
 };
+//#endregion
 
+//#region > Exports
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withRouter(ProfilePage));
+//#endregion
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)
