@@ -96,6 +96,10 @@ those rules whenever possible.
 - <https://www.facebook.com/aichner.christian>
 - <https://github.com/Aichnerc>
 
+**Michael Reinsperger**
+
+- <https://github.com/Theralun>
+
 ## [](#thanks)Thanks
 
 We do not have any external contributors yet, but if you want your name to be here, feel free
