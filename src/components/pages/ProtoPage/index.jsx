@@ -1,9 +1,18 @@
+//#region > Imports
+//> React
+// Contains all the functionality necessary to define React components
 import React, { Component } from "react";
+
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import { MDBRow, MDBCard, MDBCol, MDBBtn } from "mdbreact";
 import MDBSortable from "mdb-react-sortable";
 
+//> CSS
 import "./protopage.scss";
+//#endregion
 
+//#region > Components
 class ProtoPage extends Component {
   state = {
     edit: false,
@@ -39,13 +48,11 @@ class ProtoPage extends Component {
     });
   }
 
-  saveChanges(movedObject) {}
-
   swap = (newIndex, oldIndex) => {
     let items = this.state.items;
 
     if (newIndex >= items.length) {
-      var k = newIndex - items.length + 1;
+      let k = newIndex - items.length + 1;
       while (k--) {
         items.push(undefined);
       }
@@ -57,10 +64,10 @@ class ProtoPage extends Component {
   };
 
   render() {
-    if (this.state.items) {
-      return (
-        <div>
-          <div>
+    return (
+      <div>
+        {this.state.items && (
+          <>
             <MDBBtn
               onClick={() => {
                 if (this.state.edit) {
@@ -89,13 +96,19 @@ class ProtoPage extends Component {
                 this.swap(obj.newIndex, obj.oldIndex);
               }}
             />
-          </div>
-        </div>
-      );
-    } else {
-      return null;
-    }
+          </>
+        )}
+      </div>
+    );
   }
 }
+//#endregion
 
+//#region > Exports
 export default ProtoPage;
+//#endregion
+
+/**
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2020 Werbeagentur Christian Aichner
+ */
