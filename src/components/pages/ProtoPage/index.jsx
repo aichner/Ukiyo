@@ -65,7 +65,7 @@ class ProtoPage extends Component {
 
   render() {
     return (
-      <div id="proto">
+      <div>
         {this.state.items && (
           <>
             <MDBBtn
