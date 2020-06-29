@@ -4,12 +4,14 @@ import HomePage from "./HomePage";
 import MessagePage from "./MessagePage";
 import LoginPage from "./LoginPage";
 import ProfilePage from "./ProfilePage";
+import ProtoPage from "./ProtoPage";
 
 export { 
   HomePage,
   MessagePage,
   LoginPage,
   ProfilePage,
+  ProtoPage
 };
 
 /**

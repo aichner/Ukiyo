@@ -1,0 +1,30 @@
+#proto {
+  .SortableItem {
+    font-size: 1rem;
+    padding: 15px 20px;
+    list-style: none;
+    background-color: #007bff;
+    color: #fff;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: move;
+  }
+
+  .SortableList {
+    width: 450px;
+    display: grid;
+    grid-template-rows: repeat(3, 150px);
+    grid-template-columns: repeat(3, 150px);
+  }
+
+  .unsortable {
+    cursor: default;
+  }
+}
+
+/**
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2020 Werbeagentur Christian Aichner
+ */
