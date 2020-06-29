@@ -13,7 +13,9 @@ import {
   MessagePage,
   LoginPage,
   ProfilePage,
+  ProtoPage,
 } from "./components/pages";
+import ProtoPage from "./components/pages/ProtoPage";
 
 class Routes extends React.Component {
   render() {
@@ -22,6 +24,7 @@ class Routes extends React.Component {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/profile" component={ProfilePage} />
+        <Route exact path="/proto" component={ProtoPage} />
         <Route 
         exact
         path='/about'
