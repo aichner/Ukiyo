@@ -14,7 +14,11 @@ import firebase from "firebase";
 import { connect } from "react-redux";
 // Actions
 import { signOut } from "../../../store/actions/authActions";
-import { getPage, publishPage } from "../../../store/actions/pageActions";
+import {
+  getPage,
+  publishPage,
+  saveChanges,
+} from "../../../store/actions/pageActions";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
@@ -146,7 +150,14 @@ class ProfilePage extends React.Component {
       );
       const latestVersion = profile.versions[latestVersionTimestamp];
 
-      console.log(latestVersion);
+      let savedChanges;
+      if (!latestVersion.live) {
+        savedChanges = true;
+      } else {
+        savedChanges = this.props.savedChanges;
+      }
+
+      console.log("latest", latestVersion);
 
       return (
         <>
@@ -211,7 +222,27 @@ class ProfilePage extends React.Component {
               })}
           </div>
           <MDBContainer className="text-center">
-            {this.state.changes && <MDBBtn color="green">Save changes</MDBBtn>}
+            {this.state.changes && (
+              <MDBBtn
+                color="green"
+                onClick={() =>
+                  this.props.saveChanges(
+                    latestVersion.sections,
+                    this.state.changes.sections
+                  )
+                }
+              >
+                Save changes
+              </MDBBtn>
+            )}
+            {savedChanges && (
+              <MDBBtn
+                color="green"
+                onClick={() => this.props.publishPage(latestVersionTimestamp)}
+              >
+                Publish
+              </MDBBtn>
+            )}
             <Link to="/">
               <MDBBtn color="primary">View live</MDBBtn>
             </Link>
@@ -247,6 +278,7 @@ const mapStateToProps = (state) => {
     auth: state.firebase.auth,
     page: state.page,
     profile: state.firebase.profile,
+    savedChanges: state.page.savedChanges,
   };
 };
 
@@ -255,6 +287,8 @@ const mapDispatchToProps = (dispatch) => {
     signOut: () => dispatch(signOut()),
     getPage: (uid) => dispatch(getPage(uid)),
     publishPage: (timestamp) => dispatch(publishPage(timestamp)),
+    saveChanges: (lastversion, sections) =>
+      dispatch(saveChanges(lastversion, sections)),
   };
 };
 //#endregion

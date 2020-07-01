@@ -18,8 +18,7 @@ class SaveButton extends React.Component {
     if (value !== initialValue) {
       return (
         <MDBBtn color="success" size="sm" onClick={this.props.handleSave}>
-          <MDBIcon icon="check-circle" />
-          Save
+          <MDBIcon icon="check-circle" /> Save
         </MDBBtn>
       );
     } else {

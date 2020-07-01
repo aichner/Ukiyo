@@ -18,6 +18,16 @@ const pageReducer = (state = initState, action) => {
       };
     default:
       return state;
+    case "SAVE_SUCCESS":
+      return {
+        ...state,
+        savedChanges: true,
+      };
+    case "SAVE_ERR":
+      return {
+        ...state,
+        savedChanges: false,
+      };
   }
 };
 

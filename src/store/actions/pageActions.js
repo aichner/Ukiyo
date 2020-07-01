@@ -1,5 +1,5 @@
 //#region > LoadPage
-export const getPage = (uid) => {
+export const getPage = (uid, getLatestLive) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
 
@@ -16,14 +16,24 @@ export const getPage = (uid) => {
           return data;
         });
 
+        let versions;
+        if (getLatestLive) {
+          // Filter versions for live versions
+          versions = page[0].verions.filter((v) => v.live === true);
+        } else {
+          versions = page[0].versions;
+        }
+
         // Get the latest version
         const latestVersionTimestamp = Math.max(
-          ...Object.keys(page[0].versions).map((version) => {
+          ...Object.keys(versions).map((version) => {
             return version;
           })
         );
 
-        const latestVersion = page[0].versions[latestVersionTimestamp];
+        const latestVersion = versions[latestVersionTimestamp];
+
+        console.log("Latest Version", latestVersion);
 
         dispatch({
           type: "GET_SUCCESS",
@@ -68,6 +78,50 @@ export const publishPage = (timestamp) => {
       )
       .catch((err) => {
         console.error("Publish failed", err);
+      });
+  };
+};
+//#endregion
+
+//#region > saveChanges
+export const saveChanges = (lastVersion, sections) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+
+    // Get uid of user to talk to corresponding page
+    const uid = firebase.auth().currentUser.uid;
+
+    // Get current timestamp
+    const currentTimestamp = new Date().getTime();
+
+    const newSections = Object.keys(sections).map(() => {});
+
+    firestore
+      .collection("pages")
+      .doc(uid)
+      .set(
+        {
+          versions: {
+            [currentTimestamp]: {
+              published: currentTimestamp,
+              live: false,
+              sections,
+            },
+          },
+        },
+        { merge: true }
+      )
+      .then(
+        dispatch({
+          type: "SAVE_SUCCESS",
+        })
+      )
+      .catch((err) => {
+        dispatch({
+          type: "SAVE_ERROR",
+          err,
+        });
       });
   };
 };
