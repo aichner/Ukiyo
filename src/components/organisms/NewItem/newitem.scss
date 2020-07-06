@@ -1,0 +1,32 @@
+.new-item {
+  width: auto;
+  text-align: center;
+  margin: 0.5rem 0;
+  display: inline-block;
+
+  .options {
+    .btn {
+      display: block;
+      width: 100%;
+      text-transform: initial;
+      margin: 0.4rem 0;
+    }
+  }
+
+  .plus {
+    background: #4285f4;
+    color: white;
+    padding: 0.7rem 1rem;
+    border-radius: 2rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: transparentize($color: #4285f4, $amount: 0.3);
+    }
+  }
+}
+
+/**
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2020 Werbeagentur Christian Aichner
+ */

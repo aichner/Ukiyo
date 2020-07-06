@@ -33,6 +33,7 @@ import {
 
 //> Components
 import { AIHead } from "../../atoms";
+import { NewItem } from "../../organisms";
 
 //> CSS
 import "./profile.scss";
@@ -166,57 +167,68 @@ class ProfilePage extends React.Component {
               latestVersion.sections.map((section, s) => {
                 return (
                   <React.Fragment key={s}>
+                    {this.state.edit && <NewItem pos={{ s }} />}
                     <section id={section.anchor}>
                       <MDBContainer fluid={section.fluid}>
                         {section.content &&
                           section.content.rows.map((row, r) => {
                             return (
-                              <MDBRow
-                                key={r}
-                                className={
-                                  row.center ? "flex-center" : undefined
-                                }
-                              >
-                                {row.columns &&
-                                  row.columns.map((column, c) => {
-                                    return (
-                                      <MDBCol
-                                        md={column.size}
-                                        key={c}
-                                        className={
-                                          column.content.align &&
-                                          `text-${column.content.align}`
-                                        }
-                                      >
-                                        {column.card?.isCard ? (
-                                          <MDBCard
-                                            className={
-                                              column.card.depth &&
-                                              column.card.depth > 0
-                                                ? `z-depth-${column.card.depth}`
-                                                : undefined
-                                            }
-                                          >
-                                            <MDBCardBody>
-                                              {this.renderColContent(
-                                                column,
-                                                s,
-                                                r,
-                                                c
-                                              )}
-                                            </MDBCardBody>
-                                          </MDBCard>
-                                        ) : (
-                                          this.renderColContent(column, s, r, c)
-                                        )}
-                                      </MDBCol>
-                                    );
-                                  })}
-                              </MDBRow>
+                              <>
+                                {this.state.edit && <NewItem pos={{ s, r }} />}
+                                <MDBRow
+                                  key={r}
+                                  className={
+                                    row.center ? "flex-center" : undefined
+                                  }
+                                >
+                                  {row.columns &&
+                                    row.columns.map((column, c) => {
+                                      return (
+                                        <MDBCol
+                                          md={column.size}
+                                          key={c}
+                                          className={
+                                            column.content.align &&
+                                            `text-${column.content.align}`
+                                          }
+                                        >
+                                          {column.card?.isCard ? (
+                                            <MDBCard
+                                              className={
+                                                column.card.depth &&
+                                                column.card.depth > 0
+                                                  ? `z-depth-${column.card.depth}`
+                                                  : undefined
+                                              }
+                                            >
+                                              <MDBCardBody>
+                                                {this.renderColContent(
+                                                  column,
+                                                  s,
+                                                  r,
+                                                  c
+                                                )}
+                                              </MDBCardBody>
+                                            </MDBCard>
+                                          ) : (
+                                            this.renderColContent(
+                                              column,
+                                              s,
+                                              r,
+                                              c
+                                            )
+                                          )}
+                                        </MDBCol>
+                                      );
+                                    })}
+                                </MDBRow>
+                                {this.state.edit && <NewItem pos={{ s, r }} />}
+                              </>
                             );
                           })}
                       </MDBContainer>
                     </section>
+                    {this.state.edit && <NewItem pos={{ s }} />}
                   </React.Fragment>
                 );
               })}
@@ -251,7 +263,7 @@ class ProfilePage extends React.Component {
             </MDBBtn>
             {this.state.edit ? (
               <MDBBtn
-                color="elegant"
+                color="success"
                 onClick={() => this.setState({ edit: false })}
               >
                 View
