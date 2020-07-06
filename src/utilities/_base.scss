@@ -81,6 +81,7 @@
 // Buttons
 .btn {
   box-shadow: none !important;
+  border-radius: 0.4rem;
   &:hover {
     box-shadow: none;
   }
@@ -89,6 +90,42 @@
   }
   &:focus {
     box-shadow: none;
+  }
+
+  // Custom buttons
+  $primary: #4285f4;
+  $success: #5cb85c;
+  $info: #5bc0de;
+  $warning: #f0ad4e;
+  $danger: #d9534f;
+  $elegant: #292b2c;
+
+  &.btn-primary {
+    background: transparentize($color: $primary, $amount: 0.95) !important;
+    color: darken($primary, 5%);
+    border: 2px $primary solid;
+    &:hover {
+      background: transparentize($color: $primary, $amount: 0.8) !important;
+      color: darken($primary, 10%);
+    }
+  }
+  &.btn-elegant {
+    background: transparentize($color: $elegant, $amount: 0.95) !important;
+    color: darken($elegant, 5%);
+    border: 2px $elegant solid;
+    &:hover {
+      background: transparentize($color: $elegant, $amount: 0.8) !important;
+      color: darken($elegant, 10%);
+    }
+  }
+  &.btn-success {
+    background: transparentize($color: $success, $amount: 0.95) !important;
+    color: darken($success, 5%);
+    border: 2px $success solid;
+    &:hover {
+      background: transparentize($color: $success, $amount: 0.8) !important;
+      color: darken($success, 10%);
+    }
   }
 }
 
@@ -103,10 +140,10 @@
 }
 
 // Fix icon spacing in buttons
-.btn{
-	i{
-		padding-right: .2rem;
-	}
+.btn {
+  i {
+    padding-right: 0.2rem;
+  }
 }
 
 /** 
